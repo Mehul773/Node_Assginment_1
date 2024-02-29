@@ -26,6 +26,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       res.writeHead(200, { "Content-Type": "text/html" });
+      //Display users
       res.end(`
         <h2>Users:</h2>
         <ul>
