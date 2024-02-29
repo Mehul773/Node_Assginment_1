@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 const PORT = 3000;
 
 const server = http.createServer(async (req, res) => {
-  console.log(`Server created on ${PORT}`);
+  console.log(`Server created on ${PORT} `);
   const url = req.url;
 
   if (url === "/") {
@@ -79,5 +79,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT} visit http://localhost:3000/`);
 });
