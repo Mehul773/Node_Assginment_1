@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs").promises;
 const PORT = 3000;
+const querystring = require("querystring");
 
 const server = http.createServer(async (req, res) => {
   console.log(`Server created on ${PORT} `);
@@ -60,10 +61,11 @@ const server = http.createServer(async (req, res) => {
       body += chunk.toString();
     });
     req.on("end", async () => {
-      const userName = Buffer.concat(body).toString();
+      const parsedBody = querystring.parse(body);
+      const userName = parsedBody.userName;
       try {
         await fs.appendFile("users.txt", `${userName}\n`);
-        res.writeHead({ Location: "/users" });
+        res.writeHead(302, { Location: "/users" });
         res.end();
       } catch (error) {
         console.error(error);
